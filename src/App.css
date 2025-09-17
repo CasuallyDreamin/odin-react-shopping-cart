@@ -1,0 +1,45 @@
+/* === LOGO === */
+.logo {
+  height: clamp(3rem, 10vw, 6rem);
+  padding: var(--spacing-md);
+  will-change: filter;
+  transition: filter 0.3s ease;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2rem var(--color-accent));
+}
+
+/* === CARD === */
+.card {
+  padding: var(--spacing-lg);
+  background-color: rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform var(--transition);
+}
+.card:hover {
+  transform: translateY(-3px);
+}
+
+/* === SPINNER / MODAL PLACEHOLDER === */
+.spinner {
+  width: clamp(2rem, 5vw, 4rem);
+  height: clamp(2rem, 5vw, 4rem);
+  border: 3px solid var(--color-light);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === BUTTON VARIANTS === */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-light);
+}
+.btn-primary:hover {
+  background-color: var(--color-accent);
+}
