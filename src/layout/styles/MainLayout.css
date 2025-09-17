@@ -1,0 +1,29 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar overlay handled by Sidebar.css */
+.main-content {
+  flex: 1;
+  padding: var(--spacing-lg);
+  transition: margin-left var(--transition);
+}
+
+/* Optional: shift content when sidebar is open on desktop */
+@media (min-width: 769px) {
+  .main-content {
+    margin-left: 280px; /* sidebar width */
+  }
+
+  .sidebar.closed + .main-content {
+    margin-left: 0;
+  }
+}
+
+/* Mobile: sidebar overlays, so content stays at 0 */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+}
