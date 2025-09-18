@@ -5,9 +5,9 @@ export default function HomePage() {
     <div className="homepage">
       {/* Hero Section */}
       <section className="hero">
-        <h1>Welcome to ShopLogo</h1>
-        <p>Discover amazing products at unbeatable prices!</p>
-        <button className="cta-btn">Shop Now</button>
+        <h1>Welcome to CARTLY</h1>
+        <p>The Online Shop with the cheesiest name ever!</p>
+        <button className="cta-btn" >Shop Now</button>
       </section>
 
       {/* Featured Products */}
