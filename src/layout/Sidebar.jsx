@@ -40,18 +40,6 @@ export default function Sidebar({ isOpen, cartItems = [], onSidebarToggle }) {
         {/* Navigator */}
         <Navigator className="navigator" />
 
-        {/* Categories */}
-        <div className="sidebar-section">
-          <h3>Categories</h3>
-          <ul>
-            <li>Electronics</li>
-            <li>Clothing</li>
-            <li>Home & Kitchen</li>
-            <li>Books</li>
-            <li>Gaming</li>
-          </ul>
-        </div>
-
         {/* Shopping Cart pinned to bottom */}
         <div className="sidebar-cart">
           <h3>Shopping Cart</h3>

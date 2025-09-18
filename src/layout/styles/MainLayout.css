@@ -1,26 +1,11 @@
 .app {
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-.main-content {
+main {
   flex: 1;
   padding: var(--spacing-lg);
   transition: margin-left var(--transition);
-}
-
-@media (min-width: 769px) {
-  .main-content {
-    margin-left: 280px;
-  }
-
-  .sidebar.closed + .main-content {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-  }
 }

@@ -1,7 +1,16 @@
-const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
-}
+import "./styles/Footer.css";
 
-export default Footer
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+        <p>&copy; {new Date().getFullYear()} ShopName. All rights reserved.</p>
+        <nav className="footer-nav">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  );
+}
