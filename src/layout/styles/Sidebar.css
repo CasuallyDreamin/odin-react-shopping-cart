@@ -1,21 +1,189 @@
 .sidebar {
   position: fixed;
-  top: 120px;
+  top: var(--header-height);
   left: 0;
-  height: 100vh;
+  height: calc(100vh - var(--header-height, 60px));
   width: 280px;
   background-color: var(--color-surface);
   color: var(--color-text);
   padding: var(--spacing-lg) var(--spacing-md);
-  box-shadow: 2px 0 12px rgba(0,0,0,0.5);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
   transform: translateX(-100%);
-  transition: transform var(--transition);
-  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  overflow-y: auto;
 }
 
 .sidebar.open {
   transform: translateX(0);
 }
 
-/* Sections */
-.sidebar-section { margin-top: var(--spacing-lg); }
+.sidebar-search {
+  display: none; /* hidden by default */
+  width: 100%;
+  flex-direction: row;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.sidebar-search input {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-text);
+}
+
+.sidebar-search button {
+  flex-shrink: 0;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.sidebar-search button:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.sidebar-search button img {
+  width: clamp(1.2rem, 3vw, 1.5rem); /* limits width responsively */
+  height: auto; /* maintains aspect ratio */
+  display: block; /* removes inline spacing */
+}
+
+/* Only show mobile search */
+@media (max-width: 768px) {
+  .sidebar-search {
+    display: flex;
+  }
+}
+
+/* Navigator spacing */
+.sidebar > .navigator {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Sidebar sections */
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.sidebar-section h3 {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.sidebar-section ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding-left: 0;
+}
+
+.sidebar-section ul li {
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.sidebar-section ul li:hover {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* Sidebar cart pinned to bottom */
+.sidebar-cart {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  max-height: 250px;
+  overflow-y: auto;
+  padding-left: 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius);
+  transition: background-color var(--transition);
+}
+
+.cart-item input {
+  width: 50px;
+  padding: 2px 4px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-text);
+}
+
+.cart-item button {
+  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.cart-footer {
+  margin-top: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.finish-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  cursor: pointer;
+}
+
+.finish-btn:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  background: rgba(0,0,0,0.4);
+  z-index: 850;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition);
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}

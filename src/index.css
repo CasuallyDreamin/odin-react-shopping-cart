@@ -1,20 +1,20 @@
 /* === VARIABLES / THEME === */
 :root {
   /* Backgrounds */
-  --color-bg: #101010;           /* deep, almost black */
-  --color-surface: #1c1c1c;      /* panels/cards */
-  --color-border: #2a2a2a;       /* subtle borders */
+  --color-bg: #101010;
+  --color-surface: #1c1c1c;
+  --color-border: #2a2a2a;
 
   /* Text */
-  --color-text: #e6e6e6;         /* soft off-white */
-  --color-muted: #8a8a8a;        /* secondary text */
+  --color-text: #e6e6e6;
+  --color-muted: #8a8a8a;
 
   /* Accent colors */
-  --color-primary: #ff6f61;      /* muted coral / warm */
-  --color-secondary: #ffc857;    /* golden-yellow highlight */
-  --color-info: #00bfa6;         /* teal for info / buttons */
-  --color-error: #e63946;        /* rich red */
-  --color-success: #2a9d8f;      /* teal-green */
+  --color-primary: #ff6f61;
+  --color-secondary: #ffc857;
+  --color-info: #00bfa6;
+  --color-error: #e63946;
+  --color-success: #2a9d8f;
 
   /* Typography & spacing */
   --font-sans: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -26,7 +26,9 @@
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --radius: 8px;
+  --header-height: 60px;
   --transition: 0.25s ease;
+
 }
 
 
@@ -119,6 +121,44 @@ header, nav, aside, footer {
 .flex-center { display: flex; justify-content: center; align-items: center; }
 .text-center { text-align: center; }
 .hidden { display: none !important; }
+
+/* === PREMIUM GLOBAL SCROLLBAR === */
+body, html, .app, .main, .sidebar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+/* WebKit Browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+  transform: scaleX(1.1);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+*::-moz-scrollbar-thumb:hover {
+  background-color: rgba(255,255,255,0.35);
+}
 
 /* === MEDIA QUERIES === */
 @media (prefers-color-scheme: light) {

@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  height: 120px;
+  height: var(--header-height);
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
@@ -26,7 +26,7 @@
 
 .logo:hover {
   color: var(--color-secondary);
-  filter: drop-shadow(0 0 2rem var(--color-secondary));
+  filter: drop-shadow(0 0 4px var(--color-secondary));
 }
 
 .sidebar-toggle,
@@ -90,6 +90,12 @@
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
   color: var(--color-bg);
+}
+
+.header-search button img {
+  width: clamp(1.2rem, 3vw, 1.5rem); /* limits width responsively */
+  height: auto; /* maintains aspect ratio */
+  display: block; /* removes inline spacing */
 }
 
 .header-right {
