@@ -3,6 +3,7 @@ import "./styles/Header.css";
 import menuIcon from "../assets/menu-icon.svg";
 import cartIcon from "../assets/cart-icon.svg";
 import searchIcon from "../assets/search-icon.svg";
+import shopIcon from "../assets/shop-icon.ico";
 
 export default function Header({ onSidebarToggle }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,7 +19,7 @@ export default function Header({ onSidebarToggle }) {
         <button className="sidebar-toggle" onClick={onSidebarToggle}>
           <img src={menuIcon} alt="☰"></img>
         </button>
-        <div className="logo">ShopLogo</div>
+        <div className="logo">CARTLY</div>
       </div>
 
       <form className="header-search" onSubmit={handleSearch}>

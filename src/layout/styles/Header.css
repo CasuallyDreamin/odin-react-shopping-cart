@@ -18,15 +18,19 @@
 }
 
 .logo {
+  display: flex;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: bold;
   color: var(--color-primary);
   transition: color var(--transition), filter var(--transition);
+  align-items: center;
 }
 
-.logo:hover {
-  color: var(--color-secondary);
-  filter: drop-shadow(0 0 4px var(--color-secondary));
+.logo img {
+  display: block;
+  height: 50px;
+  width: auto;
+  background-color: var(--color-bg);
 }
 
 .sidebar-toggle,
