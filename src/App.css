@@ -33,32 +33,3 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
-
-/* === BUTTON VARIANTS === */
-.btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
-  border: 1px solid var(--color-primary);
-  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
-}
-
-.btn-primary:hover {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
-  color: var(--color-bg);
-}
-
-/* === BUTTON SECONDARY / OUTLINE === */
-.btn-secondary {
-  background-color: transparent;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
-}
-
-.btn-secondary:hover {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
-  border-color: var(--color-primary);
-}
-

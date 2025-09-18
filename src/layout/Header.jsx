@@ -3,6 +3,7 @@ import "./styles/Header.css";
 import menuIcon from "../assets/menu-icon.svg";
 import cartIcon from "../assets/cart-icon.svg";
 import searchIcon from "../assets/search-icon.svg";
+import userIcon from "../assets/user-icon.svg";
 
 export default function Header({ onSidebarToggle }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,8 +35,9 @@ export default function Header({ onSidebarToggle }) {
       </form>
 
       <div className="header-right">
-        <button className="auth-btn">Login</button>
-        <button className="auth-btn">Register</button>
+        <button className="auth-btn">
+          <img src={userIcon} alt="User" />
+        </button>
         <button className="cart-btn" aria-label="Cart">
           <img src={cartIcon} alt="🛒" />
         </button>
