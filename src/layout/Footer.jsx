@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <p>&copy; {new Date().getFullYear()} ShopName. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} -CARTLY- All rights reserved.</p>
         <nav className="footer-nav">
           <a href="/">Home</a>
           <a href="/about">About</a>
