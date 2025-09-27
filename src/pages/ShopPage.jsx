@@ -7,28 +7,27 @@ export default function ShopPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const categoryFromQuery = queryParams.get("category") || "";
+  const searchTermFromQuery = queryParams.get("search")?.toLowerCase() || ""; // Added
   const { addToCart } = useCart();
 
-  // Sample product data
   const productsData = [
-  { id: 1, name: "Laptop", price: 999, brand: "BrandA", color: "black", available: true, category: "electronics" },
-  { id: 2, name: "T-Shirt", price: 29, brand: "BrandB", color: "white", available: false, category: "clothing" },
-  { id: 3, name: "Headphones", price: 199, brand: "BrandA", color: "black", available: true, category: "electronics" },
-  { id: 4, name: "Book", price: 15, brand: "BrandC", color: "blue", available: true, category: "books" },
-  { id: 5, name: "Smartphone", price: 699, brand: "BrandA", color: "white", available: true, category: "electronics" },
-  { id: 6, name: "Jeans", price: 49, brand: "BrandB", color: "blue", available: true, category: "clothing" },
-  { id: 7, name: "Coffee Maker", price: 120, brand: "BrandC", color: "black", available: true, category: "home-kitchen" },
-  { id: 8, name: "Gaming Mouse", price: 60, brand: "BrandA", color: "black", available: false, category: "gaming" },
-  { id: 9, name: "Blender", price: 80, brand: "BrandC", color: "white", available: true, category: "home-kitchen" },
-  { id: 10, name: "Jacket", price: 120, brand: "BrandB", color: "black", available: true, category: "clothing" },
-  { id: 11, name: "Monitor", price: 250, brand: "BrandA", color: "black", available: true, category: "electronics" },
-  { id: 12, name: "Notebook", price: 10, brand: "BrandC", color: "blue", available: true, category: "books" },
-  { id: 13, name: "Keyboard", price: 80, brand: "BrandA", color: "white", available: true, category: "gaming" },
-  { id: 14, name: "Sneakers", price: 75, brand: "BrandB", color: "white", available: true, category: "clothing" },
-  { id: 15, name: "Frying Pan", price: 35, brand: "BrandC", color: "black", available: true, category: "home-kitchen" },
-  { id: 16, name: "Board Game", price: 45, brand: "BrandC", color: "blue", available: true, category: "books" },
-];
-
+    { id: 1, name: "Laptop", price: 999, brand: "BrandA", color: "black", available: true, category: "electronics" },
+    { id: 2, name: "T-Shirt", price: 29, brand: "BrandB", color: "white", available: false, category: "clothing" },
+    { id: 3, name: "Headphones", price: 199, brand: "BrandA", color: "black", available: true, category: "electronics" },
+    { id: 4, name: "Book", price: 15, brand: "BrandC", color: "blue", available: true, category: "books" },
+    { id: 5, name: "Smartphone", price: 699, brand: "BrandA", color: "white", available: true, category: "electronics" },
+    { id: 6, name: "Jeans", price: 49, brand: "BrandB", color: "blue", available: true, category: "clothing" },
+    { id: 7, name: "Coffee Maker", price: 120, brand: "BrandC", color: "black", available: true, category: "home-kitchen" },
+    { id: 8, name: "Gaming Mouse", price: 60, brand: "BrandA", color: "black", available: false, category: "gaming" },
+    { id: 9, name: "Blender", price: 80, brand: "BrandC", color: "white", available: true, category: "home-kitchen" },
+    { id: 10, name: "Jacket", price: 120, brand: "BrandB", color: "black", available: true, category: "clothing" },
+    { id: 11, name: "Monitor", price: 250, brand: "BrandA", color: "black", available: true, category: "electronics" },
+    { id: 12, name: "Notebook", price: 10, brand: "BrandC", color: "blue", available: true, category: "books" },
+    { id: 13, name: "Keyboard", price: 80, brand: "BrandA", color: "white", available: true, category: "gaming" },
+    { id: 14, name: "Sneakers", price: 75, brand: "BrandB", color: "white", available: true, category: "clothing" },
+    { id: 15, name: "Frying Pan", price: 35, brand: "BrandC", color: "black", available: true, category: "home-kitchen" },
+    { id: 16, name: "Board Game", price: 45, brand: "BrandC", color: "blue", available: true, category: "books" },
+  ];
 
   // Filters
   const [sortBy, setSortBy] = useState("price-asc");
@@ -36,7 +35,6 @@ export default function ShopPage() {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedColors, setSelectedColors] = useState([]);
   const [availableOnly, setAvailableOnly] = useState(false);
-
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   // Filtering logic
@@ -44,6 +42,13 @@ export default function ShopPage() {
     let filtered = [...productsData];
 
     if (categoryFromQuery) filtered = filtered.filter(p => p.category === categoryFromQuery);
+    if (searchTermFromQuery) {
+      filtered = filtered.filter(
+        p =>
+          p.name.toLowerCase().includes(searchTermFromQuery) ||
+          p.brand.toLowerCase().includes(searchTermFromQuery)
+      );
+    }
     filtered = filtered.filter(p => p.price <= maxPrice);
     if (selectedBrands.length) filtered = filtered.filter(p => selectedBrands.includes(p.brand));
     if (selectedColors.length) filtered = filtered.filter(p => selectedColors.includes(p.color));
@@ -57,15 +62,21 @@ export default function ShopPage() {
     }
 
     setFilteredProducts(filtered);
-  }, [categoryFromQuery, sortBy, maxPrice, selectedBrands, selectedColors, availableOnly]);
+  }, [
+    categoryFromQuery,
+    searchTermFromQuery, // Added dependency
+    sortBy,
+    maxPrice,
+    selectedBrands,
+    selectedColors,
+    availableOnly
+  ]);
 
   return (
     <div className="shop-page">
-      {/* Filter Widget */}
+      {/* Filters & product grid unchanged */}
       <aside className="shop-filters">
         <h2>Filters</h2>
-
-        {/* Sort By */}
         <label>
           Sort By
           <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
@@ -74,18 +85,10 @@ export default function ShopPage() {
             <option value="name">Name</option>
           </select>
         </label>
-
-        {/* Price Limit */}
         <label>
           Max Price
-          <input
-            type="number"
-            value={maxPrice}
-            onChange={e => setMaxPrice(Number(e.target.value))}
-          />
+          <input type="number" value={maxPrice} onChange={e => setMaxPrice(Number(e.target.value))} />
         </label>
-
-        {/* Brands */}
         <div className="brands">
           <p>Brands</p>
           {["BrandA","BrandB","BrandC"].map(brand => (
@@ -103,8 +106,6 @@ export default function ShopPage() {
             </label>
           ))}
         </div>
-
-        {/* Colors */}
         <div className="colors">
           <p>Colors</p>
           {["black","white","blue"].map(color => (
@@ -115,22 +116,19 @@ export default function ShopPage() {
                 checked={selectedColors.includes(color)}
                 onChange={e => {
                   if (e.target.checked) setSelectedColors(prev => [...prev, color]);
-                  else setSelectedColors(prev => prev.filter(c => c !== color));
+                  else setSelectedColors(prev.filter(c => c !== color));
                 }}
               />
               {color}
             </label>
           ))}
         </div>
-
-        {/* Available Only */}
         <label className="filter-checkbox">
           <input type="checkbox" checked={availableOnly} onChange={e => setAvailableOnly(e.target.checked)} />
           Available Only
         </label>
       </aside>
 
-      {/* Product Grid */}
       <section className="products-grid">
         {filteredProducts.length === 0 && <p>No products match your filters.</p>}
         {filteredProducts.map(p => (
@@ -141,10 +139,7 @@ export default function ShopPage() {
             <div className="product-info">
               <h3>{p.name}</h3>
               <p>${p.price}</p>
-              <button
-                onClick={() => addToCart(p)}
-                className="bg-primary text-bg px-3 py-1 rounded-md"
-              >
+              <button onClick={() => addToCart(p)} className="bg-primary text-bg px-3 py-1 rounded-md">
                 Add to Cart
               </button>
             </div>

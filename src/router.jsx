@@ -5,8 +5,11 @@ import AuthLayout from "./layout/AuthLayout";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import ShopPage from "./pages/ShopPage"; // 🔥 add this
+import ShopPage from "./pages/ShopPage";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
+
+
 export const router = createBrowserRouter([
   {
     path: "/",

@@ -2,18 +2,21 @@ import Navigator from "../shared/components/Navigator";
 import searchIcon from "../assets/search-icon.svg";
 import { useCart } from "../shared/hooks/useCart";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles/Sidebar.css";
 
 export default function Sidebar({ isOpen, onClose }) {
   const { cartItems, removeFromCart, updateQuantity, total } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
-  // Hook to lift search term to ShopPage (later)
   const handleSearch = (e) => {
     e.preventDefault();
-    // Currently just logs, you can connect to context later
-    console.log("Search term:", searchTerm);
-    onClose(); // Close sidebar after search
+    if (searchTerm.trim()) {
+      navigate(`/shop?search=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm("");
+      onClose(); // close sidebar after search
+    }
   };
 
   return (
@@ -60,9 +63,9 @@ export default function Sidebar({ isOpen, onClose }) {
           {cartItems.length > 0 && (
             <div className="cart-footer">
               <div className="cart-total">Total: ${total.toFixed(2)}</div>
-              <button className="finish-btn" onClick={() => console.log("Go to cart")}>
-                Finish Shopping
-              </button>
+              <Link to="/checkout">
+                <button className="finish-btn">Finish Shopping</button>
+              </Link>
             </div>
           )}
         </div>

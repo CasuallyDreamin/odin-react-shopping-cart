@@ -1,4 +1,5 @@
 import { useCart } from "../shared/hooks/useCart";
+import { Link } from "react-router-dom";
 import "./styles/CartPage.css";
 
 export default function CartPage() {
@@ -36,7 +37,9 @@ export default function CartPage() {
 
           <div className="cart-footer">
             <div className="cart-total">Total: ${total.toFixed(2)}</div>
-            <button className="checkout-btn">Proceed to Checkout</button>
+            <Link to="/checkout">
+              <button className="checkout-btn">Proceed to Checkout</button>
+            </Link>
           </div>
         </>
       )}
