@@ -1,0 +1,38 @@
+/* src/pages/styles/AboutPage.css */
+
+.about-page {
+  max-width: 960px; /* roughly matches max-w-3xl */
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: var(--line-height-base);
+}
+
+.about-page h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+}
+
+.about-page p {
+  margin-bottom: var(--spacing-md);
+  opacity: 0.85;
+}
+
+/* Optional: make last paragraph have no bottom margin */
+.about-page p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .about-page {
+    padding: var(--spacing-md);
+  }
+
+  .about-page h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+}

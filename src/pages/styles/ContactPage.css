@@ -1,0 +1,76 @@
+/* src/pages/styles/ContactPage.css */
+
+.contact-page {
+  max-width: 640px; /* roughly matches max-w-xl */
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: var(--line-height-base);
+}
+
+.contact-page h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+}
+
+.contact-page p {
+  margin-bottom: var(--spacing-md);
+  opacity: 0.85;
+}
+
+.contact-page form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.contact-page input,
+.contact-page textarea {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.contact-page input:focus,
+.contact-page textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(92, 158, 173, 0.3);
+}
+
+.contact-page button {
+  width: max-content;
+  align-self: flex-start;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.contact-page button:hover {
+  background-color: var(--color-info);
+}
+
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .contact-page {
+    padding: var(--spacing-md);
+  }
+
+  .contact-page h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+}
