@@ -12,7 +12,11 @@
   gap: var(--spacing-xs);
 }
 
+
 .nav-item {
+  display: block;
+  text-decoration: none;
+  color: var(--color-text);
   cursor: pointer;
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius);
@@ -72,6 +76,9 @@
 }
 
 .nested-item {
+  display: block;
+  text-decoration: none;
+  color: var(--color-text);
   padding: var(--spacing-xs) var(--spacing-sm);
   border-radius: var(--radius);
   cursor: pointer;
@@ -79,5 +86,6 @@
 }
 
 .nested-item:hover {
+  background-color: var(--color-primary);
   color: var(--color-bg);
 }

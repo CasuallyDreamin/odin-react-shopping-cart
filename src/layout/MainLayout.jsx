@@ -14,7 +14,9 @@ export default function MainLayout() {
   return (
     <div className="app">
       <Header onSidebarToggle={toggleSidebar} />
-      <Sidebar isOpen={isSidebarOpen} />
+
+      {/* Pass closeSidebar into Sidebar */}
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
 
       {isSidebarOpen && (
         <div className="sidebar-overlay active" onClick={closeSidebar}></div>

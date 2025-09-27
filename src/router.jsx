@@ -5,25 +5,27 @@ import AuthLayout from "./layout/AuthLayout";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-
+import ShopPage from "./pages/ShopPage"; // 🔥 add this
+import CartPage from "./pages/CartPage";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />, // wraps the "main" app
+    element: <MainLayout />,
     children: [
-      { index: true, element: <HomePage /> }, // default route
+      { index: true, element: <HomePage /> },
       { path: "about", element: <AboutPage /> },
       { path: "contact", element: <ContactPage /> },
-      // add products, cart, checkout, etc. later
+      { path: "shop", element: <ShopPage /> },
+      { path: "cart", element: <CartPage /> },
+      { path: "checkout", element: <CheckoutPage /> },
     ],
   },
   {
     path: "/auth",
-    element: <AuthLayout />, // separate layout for login/register
+    element: <AuthLayout />,
     children: [
-      // e.g. { path: "login", element: <LoginPage /> },
-      // e.g. { path: "register", element: <RegisterPage /> }
+      // { path: "login", element: <LoginPage /> },
+      // { path: "register", element: <RegisterPage /> },
     ],
   },
-  
 ]);

@@ -1,9 +1,10 @@
 import { useState } from "react";
-import "./styles/Header.css";
 import menuIcon from "../assets/menu-icon.svg";
 import cartIcon from "../assets/cart-icon.svg";
 import searchIcon from "../assets/search-icon.svg";
 import userIcon from "../assets/user-icon.svg";
+import { Link } from "react-router-dom";
+import "./styles/Header.css";
 
 export default function Header({ onSidebarToggle }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,9 +39,12 @@ export default function Header({ onSidebarToggle }) {
         <button className="auth-btn">
           <img src={userIcon} alt="User" />
         </button>
-        <button className="cart-btn" aria-label="Cart">
-          <img src={cartIcon} alt="🛒" />
-        </button>
+
+        <Link to="/cart">
+          <button className="cart-btn" aria-label="Cart">  
+            <img src={cartIcon} alt="🛒" />
+          </button>
+        </Link>
       </div>
     </header>
   );

@@ -1,25 +1,20 @@
-import "./styles/Sidebar.css";
 import Navigator from "../shared/components/Navigator";
 import searchIcon from "../assets/search-icon.svg";
+import { useCart } from "../shared/hooks/useCart";
 import { useState } from "react";
+import "./styles/Sidebar.css";
 
-export default function Sidebar({ isOpen, cartItems = [], onSidebarToggle }) {
+export default function Sidebar({ isOpen, onClose }) {
+  const { cartItems, removeFromCart, updateQuantity, total } = useCart();
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Hook to lift search term to ShopPage (later)
   const handleSearch = (e) => {
     e.preventDefault();
-    alert(`Search: ${searchTerm}`);
+    // Currently just logs, you can connect to context later
+    console.log("Search term:", searchTerm);
+    onClose(); // Close sidebar after search
   };
-
-  const handleQuantityChange = (id, qty) => {
-    console.log(`Update item ${id} quantity to ${qty}`);
-  };
-
-  const handleRemoveItem = (id) => {
-    console.log(`Remove item ${id}`);
-  };
-
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <>
@@ -33,12 +28,12 @@ export default function Sidebar({ isOpen, cartItems = [], onSidebarToggle }) {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button type="submit">
-            <img src={searchIcon} alt="Q"></img>
+            <img src={searchIcon} alt="Search" />
           </button>
         </form>
 
-        {/* Navigator */}
-        <Navigator className="navigator" />
+        {/* Navigator → pass down onClose */}
+        <Navigator className="navigator" onNavigate={onClose} />
 
         {/* Shopping Cart pinned to bottom */}
         <div className="sidebar-cart">
@@ -52,10 +47,12 @@ export default function Sidebar({ isOpen, cartItems = [], onSidebarToggle }) {
                   type="number"
                   min="1"
                   value={item.quantity}
-                  onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                  onChange={(e) => updateQuantity(item.id, e.target.value)}
                 />
-                <span className="item-price">${(item.price * item.quantity).toFixed(2)}</span>
-                <button onClick={() => handleRemoveItem(item.id)}>X</button>
+                <span className="item-price">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </span>
+                <button onClick={() => removeFromCart(item.id)}>X</button>
               </li>
             ))}
           </ul>
@@ -63,7 +60,9 @@ export default function Sidebar({ isOpen, cartItems = [], onSidebarToggle }) {
           {cartItems.length > 0 && (
             <div className="cart-footer">
               <div className="cart-total">Total: ${total.toFixed(2)}</div>
-              <button className="finish-btn">Finish Shopping</button>
+              <button className="finish-btn" onClick={() => console.log("Go to cart")}>
+                Finish Shopping
+              </button>
             </div>
           )}
         </div>
@@ -72,7 +71,7 @@ export default function Sidebar({ isOpen, cartItems = [], onSidebarToggle }) {
       {/* Overlay */}
       <div
         className={`sidebar-overlay ${isOpen ? "active" : ""}`}
-        onClick={onSidebarToggle}
+        onClick={onClose}
       />
     </>
   );
