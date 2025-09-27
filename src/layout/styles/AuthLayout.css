@@ -1,0 +1,91 @@
+/* === AuthLayout.css === */
+
+.auth-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--header-height));
+  background-color: var(--color-bg);
+  font-family: var(--font-sans);
+  padding: var(--spacing-lg);
+}
+
+.auth-container {
+  background-color: var(--color-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.auth-container h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.auth-container p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.auth-container label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.auth-container input {
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.auth-container input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.auth-container button {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  border: none;
+  font-weight: 500;
+  transition: background-color var(--transition), transform 0.2s ease;
+}
+
+.auth-container button:hover {
+  background-color: var(--color-info);
+  transform: translateY(-2px);
+}
+
+.auth-container .redirect-link {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.auth-container .redirect-link a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.auth-container .redirect-link a:hover {
+  color: var(--color-info);
+  text-decoration: underline;
+}

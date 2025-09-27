@@ -1,0 +1,20 @@
+.cart-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--color-success);
+  color: var(--color-bg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  font-weight: 500;
+  z-index: 999;
+  opacity: 0;
+  animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10%, 90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}

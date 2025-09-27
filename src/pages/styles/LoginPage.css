@@ -1,0 +1,72 @@
+/* src/pages/styles/LoginPage.css */
+
+.login-page {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius);
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: var(--font-sans);
+}
+
+.login-page h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.login-page label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.login-page input {
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.login-page button {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius);
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.login-page button:hover {
+  background-color: var(--color-info);
+}
+
+.login-footer {
+  margin-top: var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+.login-footer a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}

@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useCart } from "../shared/hooks/useCart";
+import CartToast from "../shared/components/CartToast"; // import toast component
 import "./styles/ShopPage.css";
 
 export default function ShopPage() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const categoryFromQuery = queryParams.get("category") || "";
-  const searchTermFromQuery = queryParams.get("search")?.toLowerCase() || ""; // Added
+  const searchTermFromQuery = queryParams.get("search")?.toLowerCase() || "";
   const { addToCart } = useCart();
+
+  const [toastMessage, setToastMessage] = useState(""); // state for toast
 
   const productsData = [
     { id: 1, name: "Laptop", price: 999, brand: "BrandA", color: "black", available: true, category: "electronics" },
@@ -64,7 +67,7 @@ export default function ShopPage() {
     setFilteredProducts(filtered);
   }, [
     categoryFromQuery,
-    searchTermFromQuery, // Added dependency
+    searchTermFromQuery,
     sortBy,
     maxPrice,
     selectedBrands,
@@ -72,9 +75,14 @@ export default function ShopPage() {
     availableOnly
   ]);
 
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setToastMessage(`${product.name} added to cart!`);
+  };
+
   return (
     <div className="shop-page">
-      {/* Filters & product grid unchanged */}
+      {/* Filters */}
       <aside className="shop-filters">
         <h2>Filters</h2>
         <label>
@@ -129,6 +137,7 @@ export default function ShopPage() {
         </label>
       </aside>
 
+      {/* Product Grid */}
       <section className="products-grid">
         {filteredProducts.length === 0 && <p>No products match your filters.</p>}
         {filteredProducts.map(p => (
@@ -139,13 +148,16 @@ export default function ShopPage() {
             <div className="product-info">
               <h3>{p.name}</h3>
               <p>${p.price}</p>
-              <button onClick={() => addToCart(p)} className="bg-primary text-bg px-3 py-1 rounded-md">
+              <button onClick={() => handleAddToCart(p)} className="bg-primary text-bg px-3 py-1 rounded-md">
                 Add to Cart
               </button>
             </div>
           </div>
         ))}
       </section>
+
+      {/* Cart Toast */}
+      {toastMessage && <CartToast message={toastMessage} onClose={() => setToastMessage("")} />}
     </div>
   );
 }

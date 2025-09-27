@@ -1,11 +1,16 @@
 // src/layout/AuthLayout.jsx
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
+import "./styles/AuthLayout.css";
 
 export default function AuthLayout() {
   return (
     <div className="auth-layout">
-      <h1>Auth Area</h1>
-      <Outlet />
+      <div className="auth-container">
+        <Link to="/">
+          <button className="back-btn">← Back to Home</button>
+        </Link>
+        <Outlet />
+      </div>
     </div>
   );
 }
